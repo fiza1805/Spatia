@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Test data
+*.mp4
+bedroom_frames/
+
+# YOLO models
+*.pt
+
+# Android / Gradle
+*.iml
+.gradle/
+.kotlin/
+local.properties
+.idea/
+build/
+app/
+Spatia_android_backup/
+captures/
+.externalNativeBuild/
+.cxx/
+debug.keystore
+
+# Editor / OS
+.vscode/
+.DS_Store

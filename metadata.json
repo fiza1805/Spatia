@@ -1,0 +1,8 @@
+{
+  "name": "Spatia",
+  "description": "AI-powered room understanding, spatial layout estimation, and practical interior planning recommendations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
