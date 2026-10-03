@@ -1,22 +1,118 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Spatia — AI powered Space understanding & Interior Planning Assistant
 
-# Run and deploy your AI Studio app
+Spatia is an AI based room analysis project which uses computer vision to understand the room through a video and come up with meaningful suggestions for interior and space planning based on the user's budget.
 
-This contains everything you need to run your app locally.
+## What it Does
 
-View your app in AI Studio: https://ai.studio/apps/5b71c102-1ac8-4b3b-938c-4631e699bae9
+The prototype works in the following way
 
-## Run Locally
+Room Video → OpenCV → YOLO Object detection → Room Analysis → Budget Based Recommendations → JSON Response
 
-**Prerequisites:**  [Android Studio](https://developer.android.com/studio)
+The project takes a room video as input, samples some of the video's frames, detects the objects in these sampled frames with YOLO, and recommends space planning and interior suggestions.
 
+## Features provided
 
-1. Open Android Studio
-2. Select **Open** and choose the directory containing this project
-3. Allow Android Studio to fix any incompatibilities as it imports the project.
-4. Create a file named `.env` in the project directory and set `GEMINI_API_KEY` in that file to your Gemini API key (see `.env.example` for an example)
-5. Remove this line from the app's `build.gradle.kts` file: `signingConfig = signingConfigs.getByName("debugConfig")`
-6. Run the app on an emulator or physical device
-7. If you have already published your app in AI Studio, please [request upload key reset](https://support.google.com/googleplay/android-developer/answer/9842756#zippy=%2Crequest-an-upload-key-reset) in Google Play Console.
+🎥Video room analysis
+
+🧠YOLO Object detection
+📊Objects tracking in sampled video frames
+
+💰Budget based recommendations
+
+🚀FastAPI backend for room analysis
+
+📋Analysis in JSON format
+
+🌐FastAPI interactive docs at /docs
+## Technologies Used
+Python
+YOLO / Ultralytics
+OpenCV
+FastAPI
+Uvicorn
+Streamlit
+
+## Project Structure
+```text
+.
+├── backend/
+│  ├── analyzer.py
+│  └── api.py
+├── detect.py
+├── main.py
+├── recommendations.py
+├── room_analysis.py
+├── room_understanding.py
+├── spacial_analysis.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+└── .env.example
+```
+## How it Works
+### 1. Room Video
+User provides the video of the room to the FastAPI endpoint
+### 2. Video Frame Sampling
+OpenCV reads the video, and samples some of the video's frame for further processing instead of processing all of the video's frames
+### 3. Object Detection
+YOLO does object detection on the sampled frames and detects objects like beds, chairs, laptop, and anything else detectable by YOLO.
+### 4. Room Analysis
+We gather the information about objects detected by YOLO along with their confidence and make an analysis about the room
+### 5. Budget Based Recommendations
+We use the objects detected and the budget provided by the user to make recommendations about the room.
+### 6. API response
+The FastAPI returns a JSON response with the analysis of the room.
+Example:
+```json
+{
+"success": true,
+"analysis": {
+"room_type": "Bedroom",
+"object_count": 3,
+"budget": 10000,
+"recommendations": []
+}
+}
+```
+## How to Run the Project
+### 1. Clone the Repo
+```bash
+git clone https://github.com/fiza1805/Spatia.git
+cd Spatia
+```
+### 2. Install Requirements
+```bash
+pip install -r requirements.txt
+```
+### 3. Start the Server
+```bash
+uvicorn backend.api:app --reload
+```
+### 4. Open the Server
+Go to the following URL in your browser
+```text
+http://127.0.0.1:8000
+```
+Documentation is available at
+```text
+http://127.0.0.1:8000/docs
+```
+## Example Use Case
+User provides a video of a bedroom and a budget of say ₹10,000
+Spatia will return recommendations like
+making study area if possible
+keeping a walking pathway
+making sure seats are placed near study area
+avoiding keeping heavy budget objects
+making some changes in the room with the remaining budget
+
+## Project Status
+Status: Working Prototype
+
+The current prototype implements the Python and computer vision part of the project. The future updates may focus on improving the room understanding and making better suggestions with a more comprehensive UI.
+
+## Author
+
+## Sumaiya
+
+B.Tech - Computer Science & Engineering (AI & Data Science)
